@@ -8,7 +8,7 @@ const instance = axios.create({
     })
 });
 
-const getForecast = (geoCode, callback) => {
+const getForecast = geoCode => {
     const { lat, lng } = geoCode;
     const url = `https://api.forecast.io/forecast/01a311714b4f26391e170bec6be4070a/${lat},${lng}`
     
@@ -20,7 +20,7 @@ const getForecast = (geoCode, callback) => {
                 temperature,
                 apparentTemperature,
             }
-            return callback(response, null);
+            return response;
         })
         .catch(err => callback(null, err));
 }

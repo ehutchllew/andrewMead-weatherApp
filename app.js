@@ -19,19 +19,9 @@ const argv = yargs
 
 const encodedAddress = encodeURIComponent(argv.a);
 
-const callbacks = (resp, err) => {
-    console.log(`---------------\nCallback\n---------------`)
-    if(resp)
-        return resp;
-    else
-        console.log(error);
-}
-
-// geocode.geocodeAddress(encodedAddress, geoCodeCallback)
-
 async function getWeather(address){
-    const geoCode = await geocode.geocodeAddress(address, callbacks);
-    const weather = await forecast.getForecast(geoCode, callbacks);
+    const geoCode = await geocode.geocodeAddress(address);
+    const weather = await forecast.getForecast(geoCode);
     console.log(`Weather for: ${address}\nCurrent: ${weather.temperature}\nFeels Like: ${weather.apparentTemperature}\nSummary: ${weather.summary}`);
 }
 
